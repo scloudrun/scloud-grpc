@@ -1,6 +1,7 @@
 package main
 
 import (
+	config "github.com/astaxie/beego/config"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
@@ -9,12 +10,12 @@ import (
 	pb "scloud-grpc/grpc/helloworld"
 )
 
-const (
-	port = ":50051"
-)
-
 func main() {
-	lis, err := net.Listen("tcp", port)
+	iniconf, err := config.NewConfig("ini", "conf/app.conf")
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	lis, err := net.Listen("tcp", iniconf.String("httpport"))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
