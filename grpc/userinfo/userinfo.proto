@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "UserInfoProto";
+
+package userinfo;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc GetUserInfo (UserInfoRequest) returns (UserInfoReply) {}
+  rpc GetUserDetail (UserInfoRequest) returns (UserInfoReply) {}
+}
+
+// The request message containing the user's name.
+message UserInfoRequest {
+  int64 uid = 1;
+}
+
+// The response message containing the greetings
+message UserInfoReply {
+  string message = 1;
+}
