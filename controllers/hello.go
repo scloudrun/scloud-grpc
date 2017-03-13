@@ -5,8 +5,6 @@ import (
 	pb "scloud-grpc/grpc/helloworld"
 )
 
-type Server struct{}
-
 func (s *Server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
